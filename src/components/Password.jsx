@@ -6,9 +6,10 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 const Password = () => {
-    const handlePasswords = () => {
-        let tempArr = localStorage.getItem('passwords');
-        return tempArr !== null ? JSON.parse(tempArr) : [];
+    const handlePasswords = async () => {
+        let res = await fetch("http://localhost:3000/")
+        let data = await res.json()
+        setPassArray(data ?? [])
     }
 
     const [form, setForm] = useState({
@@ -29,16 +30,35 @@ const Password = () => {
         password: 'Password',
         uid: ''
     });
-    const [passArray, setPassArray] = useState(handlePasswords);
+    const [passArray, setPassArray] = useState([]);
     const [hide, setHide] = useState(true)
     const passField = useRef()
     const [editSecVisibile, setEditSecVisible] = useState(false)
     const [deleteSecVisibile, setDeleteSecVisible] = useState(false)
 
-    const handleSave = () => {
+
+    useEffect(() => {
+        handlePasswords();
+    }, [])
+
+    useEffect(() => {
+        hide ? passField.current.type = "password" : passField.current.type = "text";
+    }, [hide])
+
+    const handleSave = async () => {
         if (form.website !== '' && form.password !== '' && form.password !== '') {
             toast('Saved')
             form.uid = uuidv4()
+
+            // Update data in Database
+            let res = await fetch("http://localhost:3000/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(form)
+            })
+
             setPassArray([...passArray, form]);
             setForm({
                 website: '',
@@ -52,14 +72,6 @@ const Password = () => {
             return;
         }
     }
-
-    useEffect(() => {
-        localStorage.setItem('passwords', JSON.stringify(passArray))
-    }, [passArray])
-
-    useEffect(() => {
-        hide ? passField.current.type = "password" : passField.current.type = "text";
-    }, [hide])
 
     const toggleHide = () => {
         setHide(!hide)
@@ -150,7 +162,6 @@ const Password = () => {
 
     return (
         <div className="min-h-[78vh] mb-5">
-
             <ToastContainer />
 
             <div className="section-1 font-blackOps w-full h-[20%] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-center justify-center mt-5">
