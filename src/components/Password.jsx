@@ -9,7 +9,7 @@ const Password = () => {
     const handlePasswords = async () => {
         let res = await fetch("http://localhost:3000/")
         let data = await res.json()
-        setPassArray( data ?? [] )
+        setPassArray(data ?? [])
     }
 
     const [form, setForm] = useState({
@@ -36,11 +36,29 @@ const Password = () => {
     const [editSecVisibile, setEditSecVisible] = useState(false)
     const [deleteSecVisibile, setDeleteSecVisible] = useState(false)
 
-    const handleSave = () => {
-        console.log(passArray)
+
+    useEffect(() => {
+        handlePasswords();
+    }, [])
+
+    useEffect(() => {
+        hide ? passField.current.type = "password" : passField.current.type = "text";
+    }, [hide])
+
+    const handleSave = async () => {
         if (form.website !== '' && form.password !== '' && form.password !== '') {
             toast('Saved')
             form.uid = uuidv4()
+
+            // Update data in Database
+            let res = await fetch("http://localhost:3000/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(form)
+            })
+
             setPassArray([...passArray, form]);
             setForm({
                 website: '',
@@ -54,18 +72,6 @@ const Password = () => {
             return;
         }
     }
-
-    useEffect(() => {
-        handlePasswords();
-    }, [])
-
-    useEffect(() => {
-        localStorage.setItem('passwords', JSON.stringify(passArray))
-    }, [passArray])
-
-    useEffect(() => {
-        hide ? passField.current.type = "password" : passField.current.type = "text";
-    }, [hide])
 
     const toggleHide = () => {
         setHide(!hide)
