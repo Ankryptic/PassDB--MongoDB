@@ -94,12 +94,20 @@ const Password = () => {
         setDeleteSecVisible(true)
     }
 
-    const handleConfirm = () => {
+    const handleConfirm = async() => {
         toast('Deleted')
 
         let tempArr = passArray.filter((data) => {
             return data.uid !== deleteData.uid
         })
+
+        let res = await fetch("http://localhost:3000/", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(deleteData)
+            })
 
         setPassArray(tempArr)
         setDeleteSecVisible(false)
