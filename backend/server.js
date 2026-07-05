@@ -35,18 +35,31 @@ async function main() {
     })
 
     // POST data 
-    app.post( "/", async (req, res) => {
+    app.post("/", async (req, res) => {
         const password = req.body;
         await collection.insertOne(password);
         res.send(passwords);
     })
 
     // DELETE data
-    app.delete( "/", async (req, res) => {
+    app.delete("/", async (req, res) => {
         const password = req.body;
-        let finalResult = await collection.deleteOne({uid: password.uid})
+        let finalResult = await collection.deleteOne({ uid: password.uid })
         res.send(finalResult);
     })
+
+    // UPDATE data
+    app.put("/", async (req, res) => {
+        const { uid, ...updatedData } = req.body;
+
+        const result = await collection.updateOne(
+            { uid },
+            { $set: updatedData }
+        );
+
+        res.send(result);
+    });
+
 
     app.listen(port, () => {
         console.log("Server is listening on ", port)

@@ -94,20 +94,21 @@ const Password = () => {
         setDeleteSecVisible(true)
     }
 
-    const handleConfirm = async() => {
+    const handleConfirm = async () => {
         toast('Deleted')
 
         let tempArr = passArray.filter((data) => {
             return data.uid !== deleteData.uid
         })
 
+        // delete data from Database
         let res = await fetch("http://localhost:3000/", {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(deleteData)
-            })
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(deleteData)
+        })
 
         setPassArray(tempArr)
         setDeleteSecVisible(false)
@@ -134,11 +135,19 @@ const Password = () => {
         }
     }
 
-    const handleUpdate = () => {
+    const handleUpdate = async() => {
         toast('Updated')
         let updatedArr = passArray.map(item => {
             return item.uid === editForm.uid ? editForm : item
         });
+
+        let res = await fetch("http://localhost:3000/", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(editForm)
+        })
 
         setPassArray(updatedArr)
         setEditSecVisible(false)
