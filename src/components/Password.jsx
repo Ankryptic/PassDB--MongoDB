@@ -135,7 +135,7 @@ const Password = () => {
         }
     }
 
-    const handleUpdate = async() => {
+    const handleUpdate = async () => {
         toast('Updated')
         let updatedArr = passArray.map(item => {
             return item.uid === editForm.uid ? editForm : item
@@ -179,9 +179,10 @@ const Password = () => {
 
     return (
         <div className="min-h-[78vh] mb-5">
+
             <ToastContainer />
 
-            <div className="section-1 font-blackOps w-full h-[20%] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-center justify-center mt-5">
+            <div className="section-1 font-blackOps w-full h-[20%] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-center justify-center mt-5 mb-5 md:mb-0">
                 <span className="text-6xl select-none">PassDB</span>
                 <div className="flex flex-col items-start text-sm leading-2.5 select-none">
                     <span>Your</span>
@@ -191,33 +192,33 @@ const Password = () => {
                 </div>
             </div>
 
-            <div className="section-2 font-blackOps w-full flex flex-col items-center gap-2.5 mb-10">
-                <div className="website-field flex items-center gap-2 w-1/2">
+            <div className="section-2 font-blackOps w-full md:flex flex-col items-center gap-2.5 mb-10">
+                <div className="website-field flex items-center gap-2 w-full md:w-1/2 p-2.5 md:p-0">
                     <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="website">Website</label>
                     <input
-                        className="bg-white w-full rounded-lg px-2 py-px focus-within:outline-3 focus-within:outline-black"
+                        className="bg-white dark:bg-black dark:text-white w-full rounded-lg px-2 py-px focus:outline-3 focus:outline-black dark:focus:outline-white"
                         placeholder="Enter Website Name"
                         type="text" id="website" name="website"
                         value={form.website}
                         onChange={(e) => { setForm({ ...form, website: e.target.value }) }}
                     />
                 </div>
-                <div className="user-pass flex gap-2.5 w-1/2">
-                    <div className="user-field flex items-center gap-2 w-full">
+                <div className="user-pass md:flex gap-2.5 w-full md:w-1/2">
+                    <div className="user-field flex items-center gap-2 w-full p-2.5 md:p-0">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="username">Username</label>
                         <input
-                            className="bg-white w-full rounded-lg px-2 py-px focus-within:outline-3 focus-within:outline-black"
+                            className="bg-white dark:bg-black dark:text-white w-full rounded-lg px-2 py-px focus:outline-3 focus:outline-black dark:focus:outline-white"
                             placeholder="Enter Username"
                             type="text" id="username" name="username"
                             value={form.username}
                             onChange={(e) => { setForm({ ...form, username: e.target.value }) }}
                         />
                     </div>
-                    <div className="pass-field flex items-center gap-2 w-full">
+                    <div className="pass-field flex items-center gap-2 w-full p-2.5 md:p-0">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="password">Password</label>
-                        <div className="flex items-center bg-white rounded-lg overflow-hidden w-full h-fit px-2 py-px focus-within:outline-3 focus-within:outline-black">
+                        <div className="flex items-center bg-white dark:bg-black dark:text-white rounded-lg overflow-hidden w-full h-fit px-2 py-px focus-within:outline-3 focus:outline-black dark:focus-within:outline-white">
                             <input
-                                className="bg-white w-full p-0 rounded-lg focus:outline-none"
+                                className="bg-white dark:bg-black w-full p-0 rounded-lg focus:outline-none"
                                 placeholder="Enter Password"
                                 ref={passField}
                                 type="password" id="password" name="password"
@@ -228,22 +229,26 @@ const Password = () => {
                                 {hide ? <EyeIcon
                                     size={18}
                                     duration={1}
-                                    color="black" />
+                                    // color="black"
+                                    className="black dark:white"
+                                />
                                     : <EyeClosedIcon
                                         size={18}
                                         duration={1}
-                                        color="black" />
+                                        // color="black"
+                                        className="black dark:white"
+                                    />
                                 }
                             </span>
 
                         </div>
                     </div>
-                    <div className="save-btn">
+                    <div className="save-btn w-20 md:w-fit mx-2.5 h-8">
                         {/* <div>
-                            <SaveBtn />
-                        </div> */}
-                        <div className="git-btn cursor-pointer border-2 border-black bg-[#c0a9b0] pb-1 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-1 active:translate-y-1">
-                            <button className="cursor-pointer bg-[#7880b5] text-[#bcc4db] text-shadow-[2px_1px_5px_black] flex items-enter gap-3 border border-white font-bold  p-1 py-0"
+                                    <SaveBtn />
+                                </div> */}
+                        <div className="git-btn cursor-pointer border-2 border-black bg-[#c0a9b0] pb-1 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-1 active:translate-y-1 w-full">
+                            <button className="cursor-pointer bg-[#7880b5] dark:bg-[#010510] text-[#bcc4db] text-shadow-[2px_1px_5px_black] dark:text-shadow-none flex justify-center items-enter gap-3 border border-white font-bold w-full p-1 py-0"
                                 onClick={handleSave}
                             >
                                 <span>Save</span>
@@ -255,17 +260,17 @@ const Password = () => {
 
             <div className="section-3 w-full flex flex-col items-center justify-center">
 
-                <div className="w-1/2 bg-[#7880b5] my-2.5 border border-[#c0a9b0] text-center text-[#bcc4db] text-shadow-[2px_1px_5px_black]">
+                <div className="md:w-1/2 w-full bg-[#7880b5] dark:bg-[#253142] my-2.5 border border-[#c0a9b0] dark:border-[#010510] text-center text-[#bcc4db] text-shadow-[2px_1px_5px_black]">
                     <div className="font-blackOps select-none">Your Passwords</div>
                 </div>
-                <div className="w-1/2 bg-[#7880b5] border border-[#c0a9b0]">
+                <div className="md:w-1/2 w-full bg-[#7880b5] dark:bg-[#253142] border border-[#c0a9b0] dark:border-[#010510]">
                     <table className="table-fixed border-separate w-full">
                         <thead>
                             <tr>
-                                <th className="w-[30%] border-b-2 border-black text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Website</th>
-                                <th className="w-[30%] border-b-2 border-black text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Username</th>
-                                <th className="w-[30%] border-b-2 border-black text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Password</th>
-                                <th className="w-[10%] border-b-2 border-black text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Actions</th>
+                                <th className="w-[30%] border-b-2 border-black dark:border-[#010510] text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Website</th>
+                                <th className="w-[30%] border-b-2 border-black dark:border-[#010510] text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Username</th>
+                                <th className="w-[30%] border-b-2 border-black dark:border-[#010510] text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Password</th>
+                                <th className="w-[10%] border-b-2 border-black dark:border-[#010510] text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -273,7 +278,7 @@ const Password = () => {
                             {/* Tables Starting from Here... */}
                             {passArray.length > 0 ? passArray.map((data) => {
                                 return <tr key={data.uid} className="border-2 border-black select-none">
-                                    <td className="w-[30%] text-center text-black font-semibold border-b-2 border-black py-1">
+                                    <td className="w-[30%] text-center text-black dark:text-white font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2">
                                             <span>{data.website}</span>
                                             <CopyIcon
@@ -285,7 +290,7 @@ const Password = () => {
                                             />
                                         </div>
                                     </td>
-                                    <td className="w-[30%] text-center text-black font-semibold border-b-2 border-black py-1">
+                                    <td className="w-[30%] text-center text-black dark:text-white font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2">
                                             <span>{data.username}</span>
                                             <CopyIcon
@@ -297,7 +302,7 @@ const Password = () => {
                                             />
                                         </div>
                                     </td>
-                                    <td className="w-[30%] text-center text-black font-semibold border-b-2 border-black py-1">
+                                    <td className="w-[30%] text-center text-black dark:text-white font-semibold border-b-2 border-black py-1">
                                         <div className="flex items-center justify-center gap-2">
                                             <span className="cursor-pointer" onClick={(e) => togglePass(e, data.password)}>********</span>
                                             <CopyIcon
@@ -345,33 +350,33 @@ const Password = () => {
 
             <div className={`delete-section ${deleteSecVisibile ? 'flex' : 'hidden'} font-blackOps w-full h-screen fixed inset-0 z-10 backdrop-blur-lg justify-center pt-28`}>
                 <div className="w-1/2">
-                    <div className="w-full text-center text-3xl font-bold text-red-600 underline">DELETE</div>
+                    <div className="w-full text-center text-3xl font-bold text-red-600 text-shadow-[2px_1px_5px_black] underline">DELETE</div>
                     <div className="w-full flex flex-col items-center justify-center py-7">
                         <div className="w-1/2 flex gap-3.5">
-                            <span>Website:</span>
-                            <span className="text-red-600">{deleteData.website}</span>
+                            <span className="text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Website:</span>
+                            <span className="text-red-600 text-shadow-[2px_1px_5px_black]">{deleteData.website}</span>
                         </div>
                         <div className="w-1/2 flex gap-3.5">
-                            <span>Username:</span>
-                            <span className="text-red-600">{deleteData.username}</span>
+                            <span className="text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Username:</span>
+                            <span className="text-red-600 text-shadow-[2px_1px_5px_black]">{deleteData.username}</span>
                         </div>
                         <div className="w-1/2 flex  gap-3.5">
-                            <span>Password:</span>
-                            <span className="text-red-600">{deleteData.password}</span>
+                            <span className="text-[#bcc4db] text-shadow-[2px_1px_5px_black]">Password:</span>
+                            <span className="text-red-600 text-shadow-[2px_1px_5px_black]">{deleteData.password}</span>
                         </div>
 
                         <div className="buttons flex items-center gap-5 mt-10">
 
                             {/* Confirm Button */}
                             <div className="Confirm-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5">
-                                <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" onClick={handleConfirm}>
+                                <button className="cursor-pointer w-20 bg-[#7880b5] dark:bg-[#010510] dark:text-white flex items-enter justify-center border-4 border-white  p-1 py-px" onClick={handleConfirm}>
                                     <span>Confirm</span>
                                 </button>
                             </div>
 
                             {/* Cancel Button */}
                             <div className="Cancel-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5" name='delete'>
-                                <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" name="delete" onClick={handleCancel}>
+                                <button className="cursor-pointer w-20 bg-[#7880b5] dark:bg-[#010510] dark:text-white flex items-enter justify-center border-4 border-white  p-1 py-px" name="delete" onClick={handleCancel}>
                                     <span>Cancel</span>
                                 </button>
                             </div>
@@ -385,7 +390,7 @@ const Password = () => {
                     <div className="flex items-center justify-between gap-2.5">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="website-edit">Website</label>
                         <input
-                            className="bg-white w-[80%] rounded-lg px-2 py-px focus-within:outline-3 focus-within:outline-black "
+                            className="bg-white dark:bg-black dark:text-white w-[80%] rounded-lg px-2 py-px focus:outline-3 focus:outline-black dark:focus:outline-white"
                             type="text" id="website-edit" name="website"
                             value={editForm.website}
                             onChange={handleEditChange}
@@ -394,7 +399,7 @@ const Password = () => {
                     <div className="flex items-center justify-between gap-2.5">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="username-edit">Username</label>
                         <input
-                            className="bg-white w-[80%] rounded-lg px-2 py-px focus-within:outline-3 focus-within:outline-black"
+                            className="bg-white dark:bg-black dark:text-white w-[80%] rounded-lg px-2 py-px focus:outline-3 focus:outline-black dark:focus:outline-white"
                             type="text" id="username-edit" name="username"
                             value={editForm.username}
                             onChange={handleEditChange}
@@ -403,7 +408,7 @@ const Password = () => {
                     <div className="flex items-center justify-between gap-2.5">
                         <label className="text-shadow-[2px_1px_5px_black] text-[#bcc4db]" htmlFor="password-edit">Password</label>
                         <input
-                            className="bg-white w-[80%] rounded-lg px-2 py-px focus-within:outline-3 focus-within:outline-black"
+                            className="bg-white dark:bg-black dark:text-white w-[80%] rounded-lg px-2 py-px focus:outline-3 focus:outline-black dark:focus:outline-white"
                             type="text" id="password-edit" name="password"
                             value={editForm.password}
                             onChange={handleEditChange}
@@ -413,14 +418,14 @@ const Password = () => {
 
                         {/* Update Button */}
                         <div className="update-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5">
-                            <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" onClick={handleUpdate}>
+                            <button className="cursor-pointer w-20 bg-[#7880b5] dark:bg-[#010510] dark:text-white flex items-enter justify-center border-4 border-white  p-1 py-px" onClick={handleUpdate}>
                                 <span>Update</span>
                             </button>
                         </div>
 
                         {/* Cancel Button */}
-                        <div className="Cancel-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0] pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5" >
-                            <button className="cursor-pointer w-20 bg-[#7880b5] flex items-enter justify-center border-4 border-white  p-1 py-px" name="Edit" onClick={handleCancel}>
+                        <div className="Cancel-btn w-22 cursor-pointer border-4 border-black bg-[#c0a9b0]  pb-2.5 select-none transition-all duration-100 ease-in-out active:p-0 active:mb-2.5 active:translate-y-2.5" >
+                            <button className="cursor-pointer w-20 bg-[#7880b5] dark:bg-[#010510] dark:text-white flex items-enter justify-center border-4 border-white  p-1 py-px" name="Edit" onClick={handleCancel}>
                                 <span>Cancel</span>
                             </button>
                         </div>

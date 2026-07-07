@@ -10,13 +10,13 @@ const GithubButton = () => {
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                <button className="cursor-pointer bg-[#7880b5] flex items-enter gap-3 border-4 border-white  p-1">
+                <button className="cursor-pointer bg-[#7880b5] dark:bg-[#010510] flex items-enter gap-3 border-4 border-white  p-1">
                     <GithubIcon
                         size={24}
                         duration={1}
                         color="#ffffff"
                     />
-                    <span>GitHub</span>
+                    <span className="text-white dark:text-white">GitHub</span>
                 </button>
             </a>
         </div>

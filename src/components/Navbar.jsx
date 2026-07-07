@@ -5,13 +5,13 @@ import DarkButton from "./DarkButton";
 const Navbar = () => {
     return (
         <nav className="font-blackOps text-black flex items-center justify-around h-18">
-            <div className="logo text-2xl font-bold">
+            <div className="logo text-2xl font-bold dark:text-[#ffffff]">
                 <span>Pass</span>
                 <span>&lt;DB&gt;</span>
-                </div>
+            </div>
             <div className="buttons flex items-center gap-2.5">
-                <GithubButton/>
-                <DarkButton/>
+                <GithubButton />
+                <DarkButton />
             </div>
         </nav>
     )
